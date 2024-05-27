@@ -17,12 +17,12 @@
 
     <div class="container">
 
-        <h3 align="center" class="mt-5">Gestion des Articles</h3>
+        <h3 align="center" id='titre'class="mt-5">Gestion des Articles</h3>
 
         <div class="row">
             <div class="col-md-2">
             </div>
-            <div class="col-md-8">
+            <div class="col-md-18">
 
             <div class="form-area">
                 <form method="POST" action="{{ route('articles.store') }}" enctype="multipart/form-data">
@@ -39,22 +39,24 @@
                         </div>
                         <div class="col-md-12">
                             <label>Description</label>
-                            <textarea type="text" class="form-control" name="description"></textarea>
+                            <textarea type="text" class="form-control" name="description" ></textarea>
 
                         </div>
                         
-                        <div class="col-md-6">
-                            <label for="">ajouter un image</label>
-                            <input type="file" name="image" /><br />
+                        <div class="col-md-4">
+                            <label for="">ajouter un image(url)</label>
+                            <br>
+                            <input type="text"class="form-control" name="image" /><br />
 
+                        </div>
+                        <div class="row1">
+                        <div class="col-md-12 mt-5">
+                            <input type="submit" class="btn btn-primary" value="envoyer">
                         </div>
                     </div>
           
                     </div>
-                    <div class="row">
-                        <div class="col-md-12 mt-3">
-                            <input type="submit" class="btn btn-primary" value="envoyer">
-                        </div>
+                    
 
                     </div>
                 </form>
@@ -65,17 +67,18 @@
     <div class="carte">
             @foreach ($Article as $key => $article )
             
-            <div class="card" style="width: 18rem;">
-  <img src="https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AA1eSGWZ.img?w=1920&h=1080&q=60&m=2&f=jpg" class="card-img-top" alt="...">
+            <div class="card" style="width:30rem;">
+  <img src="{{$article->image}}" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">{{$article->nom}}</h5>
-    <p class="card-text"> {{$article->description}}</p>
+     <p class="card-date">créer le:{{$article->created_at}}</p>
+     <a href="{{route('articles.show',$article->id)}}"> details</a>
    
     <div class="bg-info clearfix">
         <a href="{{ route('articles.edit',$article->id)}}">
         <button type="button" class="btn btn-primary float-start">modifier</button>
     </a>
-  
+ 
   <form action="{{ route('articles.destroy',$article->id) }}" method="POST" style ="display:inline">
                              @csrf
                             @method('DELETE')
@@ -116,14 +119,26 @@
             padding-top: 10%;
 
         }
-      
+      textarea{
+        height: 10rem;
+      }
         .carte{
-         
+         margin-top: 5%;
             display: flex; 
          margin-left: 5%;
          margin-right: 5%;
             justify-content: space-between;
+            flex-wrap: wrap;
+            padding-bottom: 10rem;
+           margin-bottom: 10px;
+        
         }
+        #titre{
+            font-size: 30px;
+            font-weight:bolder;
+            font-family:'Courier New', Courier, monospace ;
+        }
+       
     </style>
 @endpush
 </body>

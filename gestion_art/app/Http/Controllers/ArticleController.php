@@ -44,9 +44,15 @@ class ArticleController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    // public function show(string $id)
+    // {
+    //     $responses['Article']= $this->Article->find($id);
+    //     return view('Articles.show')->with($responses);   
+    // }
+    public function show( $id)
     {
-        //
+        $article= Articles::find($id);
+        return view('Articles.show' ,compact('article'));   
     }
 
     /**
