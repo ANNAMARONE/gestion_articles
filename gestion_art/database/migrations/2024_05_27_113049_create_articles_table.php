@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
-            $table->string('description')->nullable();
-            $table->dateTime('date_de_creation')->nullable();
+            $table->text('description')->nullable();
+           
             $table->string('type')->nullable();
             $table->string('image')->default('https://place-hold.it/300x500');
             $table->timestamps();

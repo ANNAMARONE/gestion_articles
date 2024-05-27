@@ -8,6 +8,7 @@ use App\Models\Articles;
 
 class ArticleController extends Controller
 {
+    protected $Article;
     public function __construct(){
         $this->Article=new Articles();
     }
@@ -16,7 +17,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-      return view('Articles/index');
+        $response['Article']= $this->Article->all();
+        return view('Articles.index')->with($response);
         //
     }
 
@@ -25,6 +27,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
+        
         //
     }
 
@@ -33,6 +36,8 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
+        $this->Article->create($request->all());
+        return redirect()->back();
         //
     }
 
@@ -63,8 +68,11 @@ class ArticleController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Post $post)
+    public function destroy(string $id)
     {
+        $article=$this->Article->find($id);
+        $article->Delete();
+      return redirect('articles');  
         //
     }
 }

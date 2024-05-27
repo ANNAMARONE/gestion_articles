@@ -8,13 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Articles extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'nom', 'description', 'type','date','image',
+    
+    protected $table='articles';
+    protected $primarykey='id';
+    protected $fillable=[
+        'nom',
+        'description',
+        'type',
+        'image',
     ];
- 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
 }
