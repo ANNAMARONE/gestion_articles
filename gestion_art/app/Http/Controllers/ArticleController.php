@@ -4,14 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Models\Articles;
 
-class TacheController extends Controller
+class ArticleController extends Controller
 {
+    public function __construct(){
+        $this->Article=new Articles();
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+      return view('Articles/index');
         //
     }
 
