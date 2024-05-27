@@ -83,6 +83,7 @@
                             </form>
 </div>
   </div>
+  </div>
 
   @endforeach  
   </div> 
@@ -119,7 +120,8 @@
         .carte{
          
             display: flex; 
-         
+         margin-left: 5%;
+         margin-right: 5%;
             justify-content: space-between;
         }
     </style>

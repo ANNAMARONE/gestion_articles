@@ -44,7 +44,7 @@ class ArticleController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
+    public function show(string $id)
     {
         //
     }
@@ -52,16 +52,21 @@ class ArticleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Post $post)
+    public function edit(string $id)
     {
-        //
+        $response['articles']=$this->Article->find($id);
+        return view('Articles.edit')->with($response);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, string $id)
     {
+        $Articles=$this->Article->find($id);
+        $Articles->update(array_merge($Articles->toArray(),$request->toArray()));
+        return redirect('articles');
+        //
         //
     }
 

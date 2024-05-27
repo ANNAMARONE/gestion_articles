@@ -7,16 +7,93 @@
     <title>Document</title>
 </head>
 <body>
-<div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <div class="button">
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+@extends('layouts.app')
+
+@section('content')
+
+    <div class="container">
+
+        <h3 align="center" class="mt-5">Gestion des Articles</h3>
+
+        <div class="row">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-8">
+
+            <div class="form-area">
+                <form method="POST" action="{{ route('articles.update',$articles->id) }}" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Nom de l'article</label>
+                            <input type="text" class="form-control" name="nom" value="{{ $articles->nom}}">
+                        </div>
+                        <div class="col-md-6">
+                            <label>type</label>
+                            <input type="text" class="form-control" name="type" value="{{ $articles->type}}">
+
+                        </div>
+                        <div class="col-md-12">
+                            <label>Description</label>
+                            <input  type="text" class="form-control" name="description" value="{{ $articles->description}}">
+
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <label for="">ajouter un image</label>
+                            <input type="file" name="image" /><br />
+
+                        </div>
+                    </div>
+          
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 mt-3">
+                            <input type="submit" class="btn btn-primary" value="update">
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>  
+</div>
+@push('css')
+    <style>
+        .form-area{
+            padding: 20px;
+            margin-top: 20px;
+            background-color:#b3e5fc;
+        }
+
+        .bi-trash-fill{
+            color:red;
+            font-size: 18px;
+        }
+
+        .bi-pencil{
+            color:green;
+            font-size: 18px;
+            margin-left: 20px;
+        }
+        .button{
+            display:flex;
+            margin: 10%;
+            padding-top: 10%;
+
+        }
+      
+        .carte{
+         
+            display: flex; 
+         
+            justify-content: space-between;
+        }
+     
+    </style>
+@endpush  
 </body>
 </html>
 
