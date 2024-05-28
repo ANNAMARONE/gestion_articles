@@ -13,11 +13,13 @@
 <div class="carte">
             
             <div class="card" style="width:50rem;">
+           
+            <h5 class="card-title"> {{$article->id}}- {{$article->nom}}</h5>
   <img src="{{$article->image}}" class="card-img-top" alt="...">
   <div class="card-body">
-    <h5 class="card-title">{{$article->nom}}</h5>
+   
     <p class="card-text"> {{$article->description}}</p>
-    <p class="card-text"> {{$article->type}}</p>
+    <p class="card-text">type: {{$article->type}}</p>
      <p class="card-date">créer le:{{$article->created_at}}</p>
   
    

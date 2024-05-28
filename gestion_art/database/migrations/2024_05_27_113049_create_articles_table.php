@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nom');
             $table->text('description')->nullable();
-           
-            $table->string('type')->nullable();
+            $table->enum('type', ['à la une', 'Non-vedette'])->nullable();
             $table->string('image')->default('https://place-hold.it/300x500');
             $table->timestamps();
         });

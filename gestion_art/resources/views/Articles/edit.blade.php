@@ -29,20 +29,25 @@
                             <label>Nom de l'article</label>
                             <input type="text" class="form-control" name="nom" value="{{ $articles->nom}}">
                         </div>
-                        <div class="col-md-6">
-                            <label>type</label>
-                            <input type="text" class="form-control" name="type" value="{{ $articles->type}}">
-
-                        </div>
+                        <label for="type">Type</label>
+    <select class="form-control" name="type" id="type" value="{{ $articles->type}}>
+        <option value="">Sélectionnez le type</option>
+        <option value="à la une" {{ old('type') == 'à la une' ? 'selected' : '' }}>À la une</option>
+        <option value="Non-vedette" {{ old('type') == 'Non-vedette' ? 'selected' : '' }}>Non-vedette</option>
+    </select>
+    @error('type')
+        <div class="text-danger">{{ $message }}</div>
+    @enderror
+</div>
                         <div class="col-md-12">
                             <label>Description</label>
-                            <input  type="text" class="form-control" name="description" value="{{ $articles->description}}">
+                            <input id="des" type="text" class="form-control" name="description" value="{{ $articles->description}}">
 
                         </div>
                         
                         <div class="col-md-6">
                             <label for="">ajouter un image</label>
-                            <input type="file" name="image" /><br />
+                            <input type="text" name="image" value="{{ $articles->image}}"/><br />
 
                         </div>
                     </div>
@@ -50,7 +55,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12 mt-3">
-                            <input type="submit" class="btn btn-primary" value="update">
+                            <input type="submit" class="btn btn-primary" value="envoyer">
                         </div>
 
                     </div>
@@ -90,6 +95,10 @@
             display: flex; 
          
             justify-content: space-between;
+        }
+        #des{
+            height: 10rem;
+
         }
      
     </style>
